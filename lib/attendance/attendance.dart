@@ -9,7 +9,6 @@ class AttendancePage extends StatefulWidget {
 
 class _AttendancePageState extends State<AttendancePage> {
   List<Items> data = generateItems(3);
-  @override
   Widget buildListPanel(){
      return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded){
@@ -19,8 +18,7 @@ class _AttendancePageState extends State<AttendancePage> {
       },
       children: data.map<ExpansionPanel>((Items items){
         return ExpansionPanel(
-          
-          headerBuilder: (BuildContext context ,bool isExpanded){
+          headerBuilder: (BuildContext context ,bool isExpanded){ 
           return ListTile(title: Text(items.headerValue ?? ''),);
         }, body: ListTile(
           title:Text(items.expandedValue ?? ''),
