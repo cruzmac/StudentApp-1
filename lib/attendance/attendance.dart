@@ -6,7 +6,7 @@ class AttendancePage extends StatefulWidget {
   @override
   State<AttendancePage> createState() => _AttendancePageState();
 }
-
+ 
 class _AttendancePageState extends State<AttendancePage> {
   List<Items> data = generateItems(3);
   Widget buildListPanel(){

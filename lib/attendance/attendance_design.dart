@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/attendance/attendance_constants.dart';
+import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class AttendanceDesign extends StatefulWidget {
@@ -18,7 +19,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
           Stack(children: [
             Container(
               decoration: BoxDecoration(
-                  color: AppColors().background,
+                  color: Page1Colors().background,
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(58),
                       bottomRight: Radius.circular(58))),
@@ -26,21 +27,22 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 130,
-                left: 40,
-                right: 40,
+                top: 131,
+                left: 39,
+                right: 39,
               ),
               child: Container(
                 height: 611,
                 width: 312,
                 decoration: BoxDecoration(
-                  color: AppColors().white,
+                  color: Page1Colors().white,
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 40, left: 27),
@@ -48,11 +50,11 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                             alignment: Alignment.center,
                             height: 22,
                             width: 126,
-                            color: AppColors().white,
+                            color: Page1Colors().white,
                             child: Text(
                               'Absent days',
                               style: TextStyle(
-                                  color: AppColors().textcolor,
+                                  color: Page1Colors().textcolor,
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -60,42 +62,53 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                         const SizedBox(
                           width: 27.87,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40, right: 49),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: AppColors().yellow,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(5))),
-                            alignment: Alignment.center,
-                            height: 20,
-                            width: 82,
-                            child: Text(
-                              '20',
-                              style: TextStyle(
-                                  color: AppColors().white,
-                                  fontWeight: FontWeight.w500),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 39,
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Page1Colors().yellow,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5))),
+                                alignment: Alignment.center,
+                                height: 20,
+                                width: 82,
+                                child: Text(
+                                  '20',
+                                  style: TextStyle(
+                                      color: Page1Colors().white,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
                             ),
-                          ),
+                            const SizedBox(
+                              height: 3,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 47),
+                              child: GestureDetector(
+                                onTap: () => GoRouter.of(context)
+                                    .push(Uri(path: '/secondpage').toString()),
+                                child: SizedBox(
+                                  height: 12,
+                                  width: 39,
+                                  child: Text(
+                                    'See more...',
+                                    style: TextStyle(
+                                        fontSize: 7.5,
+                                        color: Page1Colors().smalltxt,
+                                        fontWeight: FontWeight.w100),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 227),
-                      child: SizedBox(
-                        height: 12,
-                        width: 39,
-                        child: Text(
-                          'See more...',
-                          style: TextStyle(
-                              fontSize: 7.5,
-                              color: AppColors().smalltxt,
-                              fontWeight: FontWeight.w100),
-                        ),
-                      ),
                     ),
                     const SizedBox(
                       height: 22,
@@ -113,12 +126,12 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           child: Container(
                             height: 36,
                             width: 289.33,
-                            color: AppColors().white,
+                            color: Page1Colors().white,
                             alignment: Alignment.topCenter,
                             child: Text(
                               'Total no of working days',
                               style: TextStyle(
-                                  color: AppColors().textcolor,
+                                  color: Page1Colors().textcolor,
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -129,7 +142,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
-                                color: AppColors().green,
+                                color: Page1Colors().green,
                               ),
                               alignment: Alignment.center,
                               height: 24,
@@ -137,7 +150,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               child: Text(
                                 '100',
                                 style: TextStyle(
-                                    color: AppColors().white,
+                                    color: Page1Colors().white,
                                     fontWeight: FontWeight.w500),
                               ),
                             ))
@@ -164,7 +177,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                             child: Text(
                               'No of working days',
                               style: TextStyle(
-                                  color: AppColors().textcolor,
+                                  color: Page1Colors().textcolor,
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -175,7 +188,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
-                                color: AppColors().green,
+                                color: Page1Colors().green,
                               ),
                               alignment: Alignment.center,
                               height: 24,
@@ -183,7 +196,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               child: Text(
                                 '60',
                                 style: TextStyle(
-                                    color: AppColors().white,
+                                    color: Page1Colors().white,
                                     fontWeight: FontWeight.w500),
                               ),
                             ))
@@ -208,8 +221,8 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                         child: Text(
                           'Attendance Percentage',
                           style: TextStyle(
-                              color: AppColors().textcolor,
-                              fontWeight: FontWeight.w600),
+                              color: Page1Colors().textcolor,
+                              fontWeight: FontWeight.w600,fontSize: 18),
                         ),
                       ),
                     ),
@@ -228,25 +241,25 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.w700,
-                            color: AppColors().green,
+                            color: Page1Colors().green,
                           ),
                         ),
-                        backgroundColor: AppColors().yellow,
+                        backgroundColor: Page1Colors().yellow,
                         circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: AppColors().green,
+                        progressColor: Page1Colors().green,
                       ),
                     ),
                     const SizedBox(
                       height: 28,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 68, right: 58),
+                      padding: const EdgeInsets.only(left: 68),
                       child: Row(
                         children: [
                           Container(
                             height: 10,
                             width: 10,
-                            color: AppColors().green,
+                            color: Page1Colors().green,
                           ),
                           const SizedBox(
                             width: 6,
@@ -259,7 +272,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               'Present',
                               style: TextStyle(
                                   fontSize: 10,
-                                  color: AppColors().smalltxt,
+                                  color: Page1Colors().smalltxt,
                                   fontWeight: FontWeight.w100),
                             ),
                           ),
@@ -269,7 +282,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           Container(
                             height: 10,
                             width: 10,
-                            color: AppColors().yellow,
+                            color: Page1Colors().yellow,
                           ),
                           const SizedBox(
                             width: 6,
@@ -282,7 +295,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               'Absent',
                               style: TextStyle(
                                   fontSize: 10,
-                                  color: AppColors().smalltxt,
+                                  color: Page1Colors().smalltxt,
                                   fontWeight: FontWeight.w100),
                             ),
                           ),
