@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/attendance/attendance_constants.dart';
+import 'package:flutter_application_1/attendance/attendance_model.dart';
+import 'package:flutter_application_1/attendance/attendance_network.dart';
 import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -11,8 +13,29 @@ class AttendanceDesign extends StatefulWidget {
 }
 
 class _AttendanceDesignState extends State<AttendanceDesign> {
+  Attendance attend = Attendance();
+  @override
+  void initState() {
+    super.initState();
+    fetchpost();
+  }
+
+  Future<void> fetchpost() async {
+    try {
+      attend = await AttendanceRepository().fetchposts();
+      // setState(() {
+      //   loginlist = login;
+      // });
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final percent = attend.attendancepercent;
+
     return Scaffold(
       body: Column(
         children: [
@@ -78,7 +101,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                                 height: 20,
                                 width: 82,
                                 child: Text(
-                                  '20',
+                                  '${attend.noofabsentdays}',
                                   style: TextStyle(
                                       color: Page1Colors().white,
                                       fontWeight: FontWeight.w500),
@@ -148,7 +171,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               height: 24,
                               width: 94,
                               child: Text(
-                                '100',
+                                '${attend.workingdays}',
                                 style: TextStyle(
                                     color: Page1Colors().white,
                                     fontWeight: FontWeight.w500),
@@ -175,7 +198,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                             color: Colors.white,
                             alignment: Alignment.topCenter,
                             child: Text(
-                              'No of working days',
+                              'No of working days till now',
                               style: TextStyle(
                                   color: Page1Colors().textcolor,
                                   fontWeight: FontWeight.w600),
@@ -194,7 +217,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               height: 24,
                               width: 94,
                               child: Text(
-                                '60',
+                                '${attend.workingdaystillnow}',
                                 style: TextStyle(
                                     color: Page1Colors().white,
                                     fontWeight: FontWeight.w500),
@@ -222,7 +245,8 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           'Attendance Percentage',
                           style: TextStyle(
                               color: Page1Colors().textcolor,
-                              fontWeight: FontWeight.w600,fontSize: 18),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
                         ),
                       ),
                     ),
@@ -235,9 +259,9 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                         radius: 70.0,
                         lineWidth: 10.0,
                         animation: true,
-                        percent: 0.75,
+                        percent: 1,
                         center: Text(
-                          "20.43%",
+                          "${attend.attendancepercent}",
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.w700,

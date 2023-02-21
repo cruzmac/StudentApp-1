@@ -11,7 +11,7 @@ class AttendanceRepository{
 
   Future<Attendance> fetchposts() async {
     try {
-      final url = uri('attendance');
+      final url = uri('attendance/1');
       final response = await get(url);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final body = jsonDecode(response.body);
@@ -23,10 +23,10 @@ class AttendanceRepository{
           return Attendance();
         }
       } else {
-        throw HttpError('ERROR is made');
+        throw Exception(response.reasonPhrase);
       }
     } catch (e) {
-      throw HttpError(e.toString());
+      throw Exception('Error');
     } 
   }
 
@@ -38,24 +38,23 @@ class Attendance2Repository{
     return Uri.parse('$baseurl/$path');
   }
 
-  Future<Attendance2> fetchposts() async {
+  Future<List<Attendance2>> fetchposts() async {
     try {
-      final url = uri('attendance');
+      final url = uri('attendance2/1');
       final response = await get(url);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final body = jsonDecode(response.body);
-        if (body is Map) {
-          final json = Map<String, dynamic>.from(body);
-          final attend = Attendance2.fromJson(json);
+        if (body is List) {
+          final attend = body.map((e) => Attendance2.fromJson(e)).toList();
           return attend;
         } else {
-          return Attendance2();
+          return [];
         }
       } else {
-        throw HttpError('ERROR is made');
+        throw Exception(response.reasonPhrase);
       }
     } catch (e) {
-      throw HttpError(e.toString());
+      throw Exception('Error');
     } 
   }
 

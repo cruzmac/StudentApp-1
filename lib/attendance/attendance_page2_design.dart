@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/attendance/attendance_constants.dart';
+import 'package:flutter_application_1/attendance/attendance_network.dart';
 
 class AttendancePage2Design extends StatefulWidget {
   const AttendancePage2Design({super.key});
@@ -9,6 +10,20 @@ class AttendancePage2Design extends StatefulWidget {
 }
 
 class _AttendancePage2DesignState extends State<AttendancePage2Design> {
+  List attendlist = [];
+
+  Future<void> fetchpost() async {
+    try {
+     final attend = await Attendance2Repository().fetchposts();
+      setState(() {
+        attendlist = attend;
+      });
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
