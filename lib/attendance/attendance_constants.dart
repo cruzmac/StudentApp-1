@@ -7,6 +7,8 @@ class Page1Colors {
   Color white = const Color(0xFFFFFFFF);
   Color textcolor = const Color(0xFF192B47);
   Color smalltxt = const Color(0xFF717C8D);
+  Color red = const Color(0xFFFF0000);
+  Color orange = const Color(0xFFFF6700);
 }
 
 class Page2Colors {

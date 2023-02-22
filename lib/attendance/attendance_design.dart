@@ -23,9 +23,6 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
   Future<void> fetchpost() async {
     try {
       attend = await AttendanceRepository().fetchposts();
-      // setState(() {
-      //   loginlist = login;
-      // });
     } on Exception catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
@@ -34,7 +31,27 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
 
   @override
   Widget build(BuildContext context) {
-    final percent = attend.attendancepercent;
+    final status = attend.noofabsentdays ?? 90;
+    final status1 = attend.attendancepercent ?? 90;
+
+    Color getcolor() {
+      if (status >= 80) {
+        return Page1Colors().green;
+      } else if (status >= 50) {
+        return Page1Colors().orange;
+      } else {
+        return Page1Colors().red;
+      }
+    }
+    Color getcolor2() {
+      if (status1 >= 80) {
+        return Page1Colors().green;
+      } else if (status1 >= 50) {
+        return Page1Colors().orange;
+      } else {
+        return Page1Colors().red;
+      }
+    }
 
     return Scaffold(
       body: Column(
@@ -94,7 +111,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               ),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: Page1Colors().yellow,
+                                    color: getcolor(),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(5))),
                                 alignment: Alignment.center,
@@ -259,18 +276,18 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                         radius: 70.0,
                         lineWidth: 10.0,
                         animation: true,
-                        percent: 1,
+                        percent: 0.6,
                         center: Text(
                           "${attend.attendancepercent}",
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.w700,
-                            color: Page1Colors().green,
+                            color: getcolor2(),
                           ),
                         ),
                         backgroundColor: Page1Colors().yellow,
                         circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: Page1Colors().green,
+                        progressColor: getcolor2(),
                       ),
                     ),
                     const SizedBox(
@@ -283,7 +300,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           Container(
                             height: 10,
                             width: 10,
-                            color: Page1Colors().green,
+                            color: getcolor2(),
                           ),
                           const SizedBox(
                             width: 6,
