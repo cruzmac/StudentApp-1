@@ -34,16 +34,6 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
     final status1 = attend.attendancepercent ?? 40.3;
     final percent = status1 / 100;
     Color getcolor() {
-      if (status >= 80) {
-        return Page1Colors().green;
-      } else if (status >= 50) {
-        return Page1Colors().orange;
-      } else {
-        return Page1Colors().red;
-      }
-    }
-
-    Color getcolor2() {
       if (status1 >= 80) {
         return Page1Colors().green;
       } else if (status1 >= 50) {
