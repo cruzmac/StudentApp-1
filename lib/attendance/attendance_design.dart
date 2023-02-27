@@ -43,6 +43,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
         return Page1Colors().red;
       }
     }
+
     Color getcolor2() {
       if (status1 >= 80) {
         return Page1Colors().green;
@@ -68,8 +69,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 131,
-                left: 39,
-                right: 39,
+                left: 60,
               ),
               child: Container(
                 height: 611,
@@ -255,7 +255,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                       ),
                       child: Container(
                         height: 22,
-                        width: 191,
+                        width: 230,
                         color: Colors.white,
                         alignment: Alignment.topCenter,
                         child: Text(
@@ -263,7 +263,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           style: TextStyle(
                               color: Page1Colors().textcolor,
                               fontWeight: FontWeight.w600,
-                              fontSize: 18),
+                              fontSize: 14),
                         ),
                       ),
                     ),
