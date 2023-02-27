@@ -31,9 +31,8 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
 
   @override
   Widget build(BuildContext context) {
-    final status = attend.noofabsentdays ?? 90;
-    final status1 = attend.attendancepercent ?? 90;
-
+    final status1 = attend.attendancepercent ?? 40.3;
+    final percent = status1 / 100;
     Color getcolor() {
       if (status >= 80) {
         return Page1Colors().green;
@@ -276,18 +275,18 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                         radius: 70.0,
                         lineWidth: 10.0,
                         animation: true,
-                        percent: 0.6,
+                        percent: percent,
                         center: Text(
                           "${attend.attendancepercent}",
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.w700,
-                            color: getcolor2(),
+                            color: getcolor(),
                           ),
                         ),
                         backgroundColor: Page1Colors().yellow,
                         circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: getcolor2(),
+                        progressColor: getcolor(),
                       ),
                     ),
                     const SizedBox(
@@ -300,7 +299,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                           Container(
                             height: 10,
                             width: 10,
-                            color: getcolor2(),
+                            color: getcolor(),
                           ),
                           const SizedBox(
                             width: 6,

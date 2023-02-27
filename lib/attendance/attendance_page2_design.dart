@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/attendance/attendance_constants.dart';
+import 'package:flutter_application_1/attendance/attendance_model.dart';
 import 'package:flutter_application_1/attendance/attendance_network.dart';
 
 class AttendancePage2Design extends StatefulWidget {
@@ -14,7 +15,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
 
   Future<void> fetchpost() async {
     try {
-     final attend = await Attendance2Repository().fetchposts();
+      final attend = await Attendance2Repository().fetchposts();
       setState(() {
         attendlist = attend;
       });
@@ -45,7 +46,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                 right: 39,
               ),
               child: Container(
-                height: 611,
+                height: 610,
                 width: 312,
                 decoration: BoxDecoration(
                   color: Page2Colors().white,
@@ -66,6 +67,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                             child: Text(
                               'Absent days',
                               style: TextStyle(
+                                  fontSize: 17,
                                   color: Page2Colors().textcolor,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -75,7 +77,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                           width: 27.87,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 40),
+                          padding: const EdgeInsets.only(top: 46),
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Page2Colors().yellow,
@@ -87,6 +89,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                             child: Text(
                               '20',
                               style: TextStyle(
+                                  fontSize: 17,
                                   color: Page2Colors().white,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -97,12 +100,78 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                     const SizedBox(
                       height: 8,
                     ),
-                    Row()
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 37),
+                          child: Container(
+                            height: 20,
+                            width: 113,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Date',
+                              style: TextStyle(
+                                  color: Page2Colors().text2color,
+                                  fontSize: 17),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 13,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Container(
+                            height: 20,
+                            width: 122,
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Sessions',
+                              style: TextStyle(
+                                  color: Page2Colors().text2color,
+                                  fontSize: 17),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
             )
           ]),
+        ],
+      ),
+    );
+  }
+
+  Widget buildListItem(Attendance2 list, int index) {
+    return Container(
+      padding: const EdgeInsets.all(5),
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 80,
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 150, 209, 246),
+                border: Border.all(color: Colors.black45, width: 3),
+                borderRadius: BorderRadius.circular(20)),
+            child: ListTile(
+              title: Text(
+                '${list.absentdate}',
+                style: const TextStyle(fontSize: 20),
+              ),
+              trailing: Text('${list.session}'),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          )
         ],
       ),
     );

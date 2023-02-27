@@ -32,19 +32,17 @@ class Attendance {
 }
 
 class Attendance2 {
-  int? id;
   DateTime? absentdate;
   String? session;
 
-  Attendance2({this.id, this.absentdate, this.session});
+  Attendance2({this.absentdate, this.session});
   Attendance2.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
     absentdate = json['absentdate'];
     session = json['session'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['id'] = id;
+
     data['absentdate'] = absentdate;
     data['session'] = session;
     return data;
