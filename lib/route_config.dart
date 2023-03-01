@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/attendance/attendance_design.dart';
 import 'package:flutter_application_1/attendance/attendance_page2_design.dart';
+import 'package:flutter_application_1/exam_seating/examseating_design.dart';
 import 'package:go_router/go_router.dart';
 
 class AttendanceRouter {
   static GoRouter returnRouter(bool isAuth) {
     GoRouter router = GoRouter(routes: [
-       GoRoute(
-          name: MyAppRouteConstants.homeRouteName,
-          path: '/',
-          pageBuilder: (context, state) {
-            return const MaterialPage(child: AttendanceDesign());
-          },
-        ),
-        GoRoute(
-          name: MyAppRouteConstants.seemoreRouteName,
-          path: '/secondpage',
-          pageBuilder: (context, state) {
-            return const MaterialPage(child: AttendancePage2Design());
-          },
-        ),
+      GoRoute(
+        name: MyAppRouteConstants.homeRouteName,
+        path: '/',
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: ExamSeatingDesign());
+        },
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.seemoreRouteName,
+        path: '/secondpage',
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: AttendancePage2Design());
+        },
+      ),
     ]);
     return router;
   }

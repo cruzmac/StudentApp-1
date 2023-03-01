@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_application_1/attendance/attendance_model.dart';
 import 'package:http/http.dart';
-class AttendanceRepository{
+
+class AttendanceRepository {
   static const baseurl = 'https://odooformybusiness.com';
 
   static Uri uri(String path) {
@@ -27,11 +28,11 @@ class AttendanceRepository{
       }
     } catch (e) {
       throw Exception('Error');
-    } 
+    }
   }
-
 }
-class Attendance2Repository{
+
+class Attendance2Repository {
   static const baseurl = 'https://odooformybusiness.com';
 
   static Uri uri(String path) {
@@ -55,7 +56,6 @@ class Attendance2Repository{
       }
     } catch (e) {
       throw Exception('Error');
-    } 
+    }
   }
-
 }

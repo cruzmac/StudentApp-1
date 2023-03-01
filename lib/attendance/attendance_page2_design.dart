@@ -42,7 +42,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 125,
-                left: 39,
+                left: 60,
                 right: 39,
               ),
               child: Container(
