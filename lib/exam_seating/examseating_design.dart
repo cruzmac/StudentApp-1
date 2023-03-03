@@ -1,43 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/exam_seating/examseating_constants.dart';
 
-class ExamSeatingDesign extends StatefulWidget {
-  const ExamSeatingDesign({super.key});
-
-  @override
-  State<ExamSeatingDesign> createState() => _ExamSeatingDesignState();
-}
-
-class _ExamSeatingDesignState extends State<ExamSeatingDesign> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(top: 120, left: 52, right: 52),
-              children: [
-                const ContainerDesign(),
-                const SizedBox(
-                  height: 45,
-                ),
-                const ContainerDesign(),
-                const SizedBox(
-                  height: 45,
-                ),
-                ContainerDesign(bgcolor: Page1Colors().ash),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class ContainerDesign extends StatefulWidget {
-  const ContainerDesign({super.key, bgcolor});
+  final String? subCode;
+  final String? examType;
+  final String? examName;
+  final String? examDate;
+  final String? examTime;
+  final String? examHallno;
+  final String? examDay;
+  final String? description;
+
+  const ContainerDesign(
+      {super.key,
+      this.examName,
+      this.subCode,
+      this.examType,
+      this.examDate,
+      this.examTime,
+      this.examHallno,
+      this.examDay,
+      this.description});
 
   @override
   State<ContainerDesign> createState() => _ContainerDesignState();
@@ -53,7 +36,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
           color: Page1Colors().yellow,
           borderRadius: BorderRadius.circular(14),
           boxShadow: const [
-            BoxShadow(color: Colors.black26, blurRadius: 18, spreadRadius: 4)
+            BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 5)
           ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +47,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
               height: 17,
               width: 172,
               child: Text(
-                'Subject Code : 12SSP002',
+                'Subject Code : ${widget.subCode}',
                 style: TextStyle(
                     color: Page1Colors().white,
                     fontSize: 13,
@@ -80,19 +63,19 @@ class _ContainerDesignState extends State<ContainerDesign> {
                 padding: const EdgeInsets.only(left: 24),
                 child: Container(
                   height: 84,
-                  width: 126,
-                  alignment: Alignment.center,
+                  width: 150,
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    'CA1',
+                    '${widget.examType}',
                     style: TextStyle(
                         color: Page1Colors().textcolor,
-                        fontSize: 69,
+                        fontSize: 70,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 84, top: 11),
+                padding: const EdgeInsets.only(left: 64, top: 11),
                 child: Container(
                   height: 61,
                   width: 66,
@@ -110,7 +93,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        'Thursday',
+                        '${widget.examDay}',
                         style: TextStyle(
                             color: Page1Colors().white,
                             fontSize: 10,
@@ -131,7 +114,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
               child: Column(
                 children: [
                   Text(
-                    'MATHEMATICS',
+                    '${widget.examName}',
                     style: TextStyle(
                         color: Page1Colors().white,
                         fontSize: 26,
@@ -145,7 +128,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
             padding: const EdgeInsets.only(left: 24),
             child: Row(
               children: [
-                Text('Date : 02.03.23',
+                Text('Date : ${widget.examDate}',
                     style: TextStyle(
                         color: Page1Colors().white,
                         fontSize: 15,
@@ -153,7 +136,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
                 const SizedBox(
                   width: 10,
                 ),
-                Text('Time : 11am to 2pm',
+                Text('Time : ${widget.examTime}',
                     style: TextStyle(
                         color: Page1Colors().textcolor,
                         fontSize: 15,
@@ -163,7 +146,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 22, left: 24),
-            child: Text('Hall No : E201',
+            child: Text('Hall No : ${widget.examHallno}',
                 style: TextStyle(
                     color: Page1Colors().white,
                     fontSize: 15,
@@ -183,7 +166,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
                           color: Page1Colors().textcolor,
                           fontSize: 15,
                           fontWeight: FontWeight.w800)),
-                  Text('A block, 2nd Floor',
+                  Text('${widget.description}',
                       style: TextStyle(
                           color: Page1Colors().white,
                           fontSize: 15,
