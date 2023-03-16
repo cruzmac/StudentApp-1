@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_application_1/exam_seating/examseating_model.dart';
+import 'package:flutter_application_1/utils/http_error.dart';
 import 'package:http/http.dart';
 
 class ExamSeatingRepository {
@@ -11,9 +12,18 @@ class ExamSeatingRepository {
 
   Future<List<ExamSeating>> fetchposts() async {
     try {
-      final url = uri('examseating/1');
-      final response = await get(url);
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      final url = uri('ca_exam_seating');
+      final response = await post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive'
+          },
+          body: jsonEncode({
+            "stud_id": "1",
+          }));
+      if (response.statusCode == 201) {
         final body = jsonDecode(response.body);
         if (body is List) {
           final seating = body.map((e) => ExamSeating.fromJson(e)).toList();
@@ -22,10 +32,10 @@ class ExamSeatingRepository {
           return [];
         }
       } else {
-        throw Exception(response.reasonPhrase);
+        throw HttpError('Something went wrong. Please try again later');
       }
     } catch (e) {
-      throw Exception('Error');
+      throw HttpError('Error');
     }
   }
 }

@@ -6,3 +6,4 @@ class Page1Colors {
   Color textcolor = const Color(0xFF192B47);
   Color ash = const Color(0xFFC3BFB3);
 }
+ 

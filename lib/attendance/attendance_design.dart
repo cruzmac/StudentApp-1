@@ -22,7 +22,10 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
 
   Future<void> fetchpost() async {
     try {
-      attend = await AttendanceRepository().fetchposts();
+      final attendance = await AttendanceRepository().fetchposts();
+      setState(() {
+        attend = attendance;
+      });
     } on Exception catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
@@ -31,7 +34,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
 
   @override
   Widget build(BuildContext context) {
-    final status1 = attend.attendancepercent ?? 40.3;
+    final status1 = attend.attendancePercent ?? 0;
     final percent = status1 / 100;
     Color getcolor() {
       if (status1 >= 80) {
@@ -58,7 +61,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 131,
-                left: 60,
+                left: 39,
               ),
               child: Container(
                 height: 611,
@@ -107,7 +110,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                                 height: 20,
                                 width: 82,
                                 child: Text(
-                                  '${attend.noofabsentdays}',
+                                  '${attend.noOfAbsentDays}',
                                   style: TextStyle(
                                       color: Page1Colors().white,
                                       fontWeight: FontWeight.w500),
@@ -128,7 +131,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                                   child: Text(
                                     'See more...',
                                     style: TextStyle(
-                                        fontSize: 7.5,
+                                        fontSize: 5.5,
                                         color: Page1Colors().smalltxt,
                                         fontWeight: FontWeight.w100),
                                   ),
@@ -177,7 +180,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               height: 24,
                               width: 94,
                               child: Text(
-                                '${attend.workingdays}',
+                                '${attend.workingDays}',
                                 style: TextStyle(
                                     color: Page1Colors().white,
                                     fontWeight: FontWeight.w500),
@@ -223,7 +226,7 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                               height: 24,
                               width: 94,
                               child: Text(
-                                '${attend.workingdaystillnow}',
+                                '${attend.workingDaysTillNow}',
                                 style: TextStyle(
                                     color: Page1Colors().white,
                                     fontWeight: FontWeight.w500),
@@ -262,12 +265,12 @@ class _AttendanceDesignState extends State<AttendanceDesign> {
                     Padding(
                       padding: const EdgeInsets.only(left: 90, right: 89),
                       child: CircularPercentIndicator(
-                        radius: 70.0,
+                        radius: 73.0,
                         lineWidth: 10.0,
                         animation: true,
                         percent: percent,
                         center: Text(
-                          "${attend.attendancepercent}",
+                          "${attend.attendancePercent} %",
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.w700,

@@ -1,4 +1,5 @@
 class ExamSeating {
+  int? studId;
   String? subCode;
   String? examType;
   String? examName;
@@ -6,8 +7,11 @@ class ExamSeating {
   String? examTime;
   String? examHallno;
   String? examDay;
-  String? description;
+  String? blockName;
+  String? floorNo;
+  bool? isExamToday;
   ExamSeating({
+    this.studId,
     this.subCode,
     this.examType,
     this.examName,
@@ -15,29 +19,37 @@ class ExamSeating {
     this.examTime,
     this.examHallno,
     this.examDay,
-    this.description,
+    this.blockName,
+    this.floorNo,
+    this.isExamToday,
   });
 
   ExamSeating.fromJson(Map<String, dynamic> json) {
-    subCode = json['subCode'];
-    examType = json['examType'];
-    examName = json['examName'];
-    examDate = json['examDate'];
-    examTime = json['examTime'];
-    examHallno = json['examHallno'];
-    examDay = json['examDay'];
-    description = json['description'];
+    studId = json['stud_id'];
+    subCode = json['subject_code'];
+    examType = json['exam_type'];
+    examName = json['exam_name'];
+    examDate = json['exam_date'];
+    examTime = json['timing'];
+    examHallno = json['hall_no'];
+    blockName = json['block_name'];
+    floorNo = json['floor_no'];
+    examDay = json['day'];
+    isExamToday = json['is_exam_today'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['subCode'] = subCode;
-    data['examType'] = examType;
-    data['examName'] = examName;
-    data['examDate'] = examDate;
-    data['examTime'] = examTime;
-    data['examHallno'] = examHallno;
-    data['examDay'] = examDay;
-    data['description'] = description;
+    data['stud_id'] = studId;
+    data['subject_code'] = subCode;
+    data['exam_type'] = examType;
+    data['exam_name'] = examName;
+    data['exam_date'] = examDate;
+    data['timing'] = examTime;
+    data['hall_no'] = examHallno;
+    data['block_name'] = blockName;
+    data['floor_no'] = floorNo;
+    data['day'] = examDay;
+    data['is_exam_today'] = isExamToday;
     return data;
   }
 }

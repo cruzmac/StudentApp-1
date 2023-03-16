@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter_application_1/attendance/attendance_model.dart';
+import 'package:flutter_application_1/utils/http_error.dart';
 import 'package:http/http.dart';
 
 class AttendanceRepository {
@@ -12,22 +12,27 @@ class AttendanceRepository {
 
   Future<Attendance> fetchposts() async {
     try {
-      final url = uri('attendance/1');
-      final response = await get(url);
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      final url = uri('attendance');
+      final response = await post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive'
+          },
+          body: jsonEncode({
+            "stud_id": "1",
+          }));
+      if (response.statusCode == 201) {
         final body = jsonDecode(response.body);
-        if (body is Map) {
-          final json = Map<String, dynamic>.from(body);
-          final attend = Attendance.fromJson(json);
-          return attend;
-        } else {
-          return Attendance();
-        }
+        final json = Map<String, dynamic>.from(body);
+        final attend = Attendance.fromJson(json);
+        return attend;
       } else {
-        throw Exception(response.reasonPhrase);
+        throw HttpError('Server is Busy');
       }
     } catch (e) {
-      throw Exception('Error');
+      throw HttpError('Http error.Try again later');
     }
   }
 }
@@ -41,9 +46,18 @@ class Attendance2Repository {
 
   Future<List<Attendance2>> fetchposts() async {
     try {
-      final url = uri('attendance2/1');
-      final response = await get(url);
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      final url = uri('attendance/details');
+      final response = await post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive'
+          },
+          body: jsonEncode({
+            "stud_id": "1",
+          }));
+      if (response.statusCode == 201) {
         final body = jsonDecode(response.body);
         if (body is List) {
           final attend = body.map((e) => Attendance2.fromJson(e)).toList();
@@ -52,10 +66,10 @@ class Attendance2Repository {
           return [];
         }
       } else {
-        throw Exception(response.reasonPhrase);
+        throw HttpError('Server is Busy.Try again later');
       }
     } catch (e) {
-      throw Exception('Error');
+      throw HttpError('Http error.Try again later');
     }
   }
 }

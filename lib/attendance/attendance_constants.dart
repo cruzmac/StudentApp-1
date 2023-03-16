@@ -12,10 +12,10 @@ class Page1Colors {
 }
 
 class Page2Colors {
-  Color background = const Color(0xFFFFB900);
   Color yellow = const Color(0xFFFFB900);
   Color white = const Color(0xFFFFFFFF);
   Color textcolor = const Color(0xFF192B47);
   Color text2color = const Color(0xFF0E3A7D);
   Color smalltxt = const Color(0xFF717C8D);
+  Color ash = const Color(0xFFF4F6F8);
 }

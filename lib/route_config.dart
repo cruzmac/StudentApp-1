@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/attendance/attendance_design.dart';
 import 'package:flutter_application_1/attendance/attendance_page2_design.dart';
 import 'package:flutter_application_1/exam_seating/examseating_listview.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +11,7 @@ class AttendanceRouter {
         name: MyAppRouteConstants.homeRouteName,
         path: '/',
         pageBuilder: (context, state) {
-          return const MaterialPage(child: ExamSeatingDesign());
+          return const MaterialPage(child: AttendanceDesign());
         },
       ),
       GoRoute(

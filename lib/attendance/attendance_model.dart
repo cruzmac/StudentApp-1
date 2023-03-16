@@ -1,50 +1,45 @@
 class Attendance {
-  int? id;
-  int? noofabsentdays;
-  int? workingdays;
-  int? workingdaystillnow;
-  int? attendancepercent;
+  int? noOfAbsentDays;
+  int? workingDays;
+  int? workingDaysTillNow;
+  int? attendancePercent;
 
   Attendance({
-    this.id,
-    this.noofabsentdays,
-    this.workingdays,
-    this.workingdaystillnow,
-    this.attendancepercent,
+    this.noOfAbsentDays,
+    this.workingDays,
+    this.workingDaysTillNow,
+    this.attendancePercent,
   });
 
   Attendance.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    noofabsentdays = json['noofabsentdays'];
-    workingdays = json['workingdays'];
-    workingdaystillnow = json['workingdaystillnow'];
-    attendancepercent = json['attendancepercent'];
+    noOfAbsentDays = json["absent_days"];
+    workingDays = json["total_working_days"];
+    workingDaysTillNow = json["working_days_till_now"];
+    attendancePercent = json["attendance_percentage"];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['id'] = id;
-    data['noofabsentdays'] = noofabsentdays;
-    data['workingdays'] = workingdays;
-    data['workingdaystillnow'] = workingdaystillnow;
-    data['attendancepercent'] = attendancepercent;
+    data['absent_days'] = noOfAbsentDays;
+    data['total_working_days'] = workingDays;
+    data['working_days_till_now'] = workingDaysTillNow;
+    data['attendance_percentage'] = attendancePercent;
     return data;
   }
 }
 
 class Attendance2 {
-  DateTime? absentdate;
+  String? absentDate;
   String? session;
 
-  Attendance2({this.absentdate, this.session});
+  Attendance2({this.absentDate, this.session});
   Attendance2.fromJson(Map<String, dynamic> json) {
-    absentdate = json['absentdate'];
-    session = json['session'];
+    absentDate = json['date'];
+    session = json['absent_session'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-
-    data['absentdate'] = absentdate;
-    data['session'] = session;
+    data['date'] = absentDate;
+    data['absent_session'] = session;
     return data;
   }
 }

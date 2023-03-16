@@ -9,7 +9,9 @@ class ContainerDesign extends StatefulWidget {
   final String? examTime;
   final String? examHallno;
   final String? examDay;
-  final String? description;
+  final String? blockName;
+  final String? floorNo;
+  final bool? isExamToday;
 
   const ContainerDesign(
       {super.key,
@@ -20,20 +22,24 @@ class ContainerDesign extends StatefulWidget {
       this.examTime,
       this.examHallno,
       this.examDay,
-      this.description});
-
+      this.blockName,
+      this.floorNo,
+      this.isExamToday});
   @override
   State<ContainerDesign> createState() => _ContainerDesignState();
 }
 
 class _ContainerDesignState extends State<ContainerDesign> {
+  ContainerDesign data = const ContainerDesign();
   @override
   Widget build(BuildContext context) {
+    final status = widget.isExamToday ?? false;
+    Color color = status ? Page1Colors().yellow : Page1Colors().ash;
     return Container(
       height: 323,
       width: 326,
       decoration: BoxDecoration(
-          color: Page1Colors().yellow,
+          color: color,
           borderRadius: BorderRadius.circular(14),
           boxShadow: const [
             BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 5)
@@ -166,7 +172,7 @@ class _ContainerDesignState extends State<ContainerDesign> {
                           color: Page1Colors().textcolor,
                           fontSize: 15,
                           fontWeight: FontWeight.w800)),
-                  Text('${widget.description}',
+                  Text('${widget.blockName} Block ${widget.floorNo} Floor',
                       style: TextStyle(
                           color: Page1Colors().white,
                           fontSize: 15,

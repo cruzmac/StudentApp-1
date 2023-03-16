@@ -11,7 +11,13 @@ class AttendancePage2Design extends StatefulWidget {
 }
 
 class _AttendancePage2DesignState extends State<AttendancePage2Design> {
-  List attendlist = [];
+  List<Attendance2> attendlist = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchpost();
+  }
 
   Future<void> fetchpost() async {
     try {
@@ -33,7 +39,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
           Stack(children: [
             Container(
               decoration: BoxDecoration(
-                  color: Page2Colors().background,
+                  color: Page2Colors().yellow,
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(58),
                       bottomRight: Radius.circular(58))),
@@ -42,7 +48,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 125,
-                left: 60,
+                left: 39,
                 right: 39,
               ),
               child: Container(
@@ -67,7 +73,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                             child: Text(
                               'Absent days',
                               style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 14,
                                   color: Page2Colors().textcolor,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -89,7 +95,7 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                             child: Text(
                               '20',
                               style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 14,
                                   color: Page2Colors().white,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -103,16 +109,20 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 37),
+                          padding: const EdgeInsets.only(left: 30),
                           child: Container(
+                            padding: const EdgeInsets.only(left: 5),
                             height: 20,
                             width: 113,
                             alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                                color: Page2Colors().ash,
+                                borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               'Date',
                               style: TextStyle(
                                   color: Page2Colors().text2color,
-                                  fontSize: 17),
+                                  fontSize: 12),
                             ),
                           ),
                         ),
@@ -125,53 +135,48 @@ class _AttendancePage2DesignState extends State<AttendancePage2Design> {
                             height: 20,
                             width: 122,
                             alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Page2Colors().ash,
+                                borderRadius: BorderRadius.circular(5)),
                             child: Text(
                               'Sessions',
                               style: TextStyle(
                                   color: Page2Colors().text2color,
-                                  fontSize: 17),
+                                  fontSize: 12),
                             ),
                           ),
                         ),
                       ],
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 44),
+                      child: SizedBox(
+                        height: 400,
+                        width: 200,
+                        child: ListView.builder(
+                          itemCount: attendlist.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(
+                                '${attendlist[index].absentDate},',
+                                style: TextStyle(
+                                    fontSize: 10, color: Page2Colors().ash),
+                              ),
+                              trailing: Text(
+                                '${attendlist[index].session}',
+                                style: TextStyle(
+                                    fontSize: 10, color: Page2Colors().ash),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
             )
           ]),
-        ],
-      ),
-    );
-  }
-
-  Widget buildListItem(Attendance2 list, int index) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 80,
-            decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 150, 209, 246),
-                border: Border.all(color: Colors.black45, width: 3),
-                borderRadius: BorderRadius.circular(20)),
-            child: ListTile(
-              title: Text(
-                '${list.absentdate}',
-                style: const TextStyle(fontSize: 20),
-              ),
-              trailing: Text('${list.session}'),
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          )
         ],
       ),
     );
