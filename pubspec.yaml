@@ -39,6 +39,8 @@ dependencies:
   go_router: ^6.0.9
   google_fonts: ^4.0.3
   http:
+  flutter_bloc:
+  equatable:
 
 dev_dependencies:
   flutter_test:
